@@ -15,5 +15,11 @@ public class Rabbit implements Actor {
         g.setColor(Color.BLACK);
         g.drawRect(x, y, Cell.size, Cell.size);
     }
-
 }
+/*
+ * public class Rabbit extends Actor {
+ * 
+ * public Rabbit(Cell loc) { this.loc = loc; this.colour = Color.WHITE; }
+ * 
+ * }
+ */

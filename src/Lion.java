@@ -16,3 +16,10 @@ public class Lion implements Actor {
         g.drawRect(x, y, Cell.size, Cell.size);
     }
 }
+/*
+ * public class Lion extends Actor {
+ * 
+ * public Lion(Cell loc) { this.loc = loc; this.colour = Color.RED; }
+ * 
+ * }
+ */
