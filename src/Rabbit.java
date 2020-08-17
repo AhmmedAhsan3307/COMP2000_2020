@@ -1,6 +1,8 @@
+
 import java.awt.*;
 
 public class Rabbit implements Actor {
+    // Cell cell;
     int x;
     int y;
 
@@ -15,7 +17,9 @@ public class Rabbit implements Actor {
         g.setColor(Color.BLACK);
         g.drawRect(x, y, Cell.size, Cell.size);
     }
+
 }
+
 /*
  * public class Rabbit extends Actor {
  * 

@@ -5,7 +5,6 @@ public class Stage {
     Actor actors[] = new Actor[3];
 
     public Stage() {
-
         actors[0] = new Rabbit(grid.cells[1][2]);
         actors[1] = new Lion(grid.cells[5][4]);
         actors[2] = new Puppy(grid.cells[10][8]);
