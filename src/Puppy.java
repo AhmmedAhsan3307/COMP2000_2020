@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Puppy implements Actor {
+/*public class Puppy implements Actor {
     int x;
     int y;
 
@@ -15,11 +15,13 @@ public class Puppy implements Actor {
         g.setColor(Color.BLACK);
         g.drawRect(x, y, Cell.size, Cell.size);
     }
+}*/
+
+public class Puppy extends Actor {
+
+    public Puppy(Cell loc) {
+        this.loc = loc;
+        this.colour = Color.GREEN;
+    }
+
 }
-/*
- * public class Puppy extends Actor {
- * 
- * public Puppy(Cell loc){ this.loc = loc; this.colour = Color.GREEN; }
- * 
- * }
- */

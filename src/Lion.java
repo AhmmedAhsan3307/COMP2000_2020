@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Lion implements Actor {
+/*public class Lion implements Actor {
     int x;
     int y;
 
@@ -14,12 +14,16 @@ public class Lion implements Actor {
         g.fillRect(x, y, Cell.size, Cell.size);
         g.setColor(Color.BLACK);
         g.drawRect(x, y, Cell.size, Cell.size);
+        
+        
     }
+}*/
+
+public class Lion extends Actor {
+
+    public Lion(Cell loc) {
+        this.loc = loc;
+        this.colour = Color.RED;
+    }
+
 }
-/*
- * public class Lion extends Actor {
- * 
- * public Lion(Cell loc) { this.loc = loc; this.colour = Color.RED; }
- * 
- * }
- */
