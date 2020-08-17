@@ -29,6 +29,7 @@ public class Stage {
         puppy = new Puppy(grid.cellAtColRow(0, 0));
         lion = new Lion(grid.cellAtColRow(0, 18));
         rabbit = new Rabbit(grid.cellAtColRow(14, 3));
+
     }
 
     public void paint(Graphics g, Point mouseLoc) {
