@@ -1,18 +1,20 @@
 import java.awt.*;
+import java.util.ArrayList;
 
 /*public interface Actor {
     void paint(Graphics g);
 }*/
 
 public abstract class Actor {
-    Color colour;
+    ArrayList<Polygon> polygon = new ArrayList<Polygon>();
+
     Cell loc;
 
     public void paint(Graphics g) {
-        g.setColor(colour);
-        g.fillRect(loc.x + 5, loc.y + 5, loc.width - 10, loc.height - 10);
-        g.setColor(Color.GRAY);
-        g.drawRect(loc.x + 5, loc.y + 5, loc.width - 10, loc.height - 10);
+        g.setColor(Color.black);
+        for (Polygon p : polygon) {
+            g.drawPolygon(p);
 
+        }
     }
 }

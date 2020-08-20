@@ -23,7 +23,20 @@ public class Lion extends Actor {
 
     public Lion(Cell loc) {
         this.loc = loc;
-        this.colour = Color.RED;
+        Polygon mane = new Polygon();
+        mane.addPoint(loc.x + 6, loc.y + 6);
+        mane.addPoint(loc.x + 29, loc.y + 6);
+        mane.addPoint(loc.x + 29, loc.y + 29);
+        mane.addPoint(loc.x + 6, loc.y + 29);
+        Polygon face = new Polygon();
+        face.addPoint(loc.x + 11, loc.y + 11);
+        face.addPoint(loc.x + 24, loc.y + 11);
+        face.addPoint(loc.x + 24, loc.y + 24);
+        face.addPoint(loc.x + 11, loc.y + 24);
+
+        polygon.add(mane);
+        polygon.add(face);
+
     }
 
 }
