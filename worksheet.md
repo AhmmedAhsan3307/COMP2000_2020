@@ -126,10 +126,10 @@ ear1.addPoint(location.x + 11, location.y + 12);
 ear1.addPoint(location.x + 16, location.y + 12);
 ear1.addPoint(location.x + 16, location.y + 5);
 Polygon ear2 = new Polygon();
-ear1.addPoint(location.x + 19, location.y + 5);
-ear1.addPoint(location.x + 19, location.y + 12);
-ear1.addPoint(location.x + 24, location.y + 12);
-ear1.addPoint(location.x + 24, location.y + 5);
+ear2.addPoint(location.x + 19, location.y + 5);
+ear2.addPoint(location.x + 19, location.y + 12);
+ear2.addPoint(location.x + 24, location.y + 12);
+ear2.addPoint(location.x + 24, location.y + 5);
 Polygon face = new Polygon();
 face.addPoint(location.x+8, location.y + 12);
 face.addPoint(location.x+27, location.y + 12);
@@ -158,25 +158,30 @@ public Optional<Cell> cellAtPoint(Point p)
 🤔 Now that we have `cellAtPoint`, lets use it.  Grow the app window to 880x720 so we have some clear space to the right of the grid.  In this space, put the details of whatever cell we are hoving over.  For example, you might put the type of cell that is located there, and what it's movement cost is.  There are many ways to do this, but one good way is to call `cellAtPoint` while painting the stage and use the resulting cell information.
 
 # Task 13
-Our task now is to add the ability to read in configuration data from a file. Someone else at the company (person A) has tried and has committed some broken code.
 
-A file is kept in a "data" folder called "stage1.rvb". That file has one line for each configuration item. We begin with just the character locations.
+Our task now is to add the ability to read in configuration data from a file.  Someone else at the company (person A) has tried and has committed some broken code.
 
-This all seems OK, but they are getting an error on the build. Track down the error and fix it for them.
+A file is kept in a "data" folder called "stage1.rvb". That file has one line for each configuration item.  We begin with just the character locations.
+
+This all seems OK, but they are getting an error on the build.  Track down the error and fix it for them.
 
 # Task 14
-At the moment, the file reading code will thrown an exception if it fails to read a file. You should change this code so that it won't ever throw an exception. This means you will have to think hard about what to do on a failed file read.
+
+At the moment, the file reading code will thrown an exception if it fails to read a file.  You should change this code so that _it won't ever throw an exception_.  This means you will have to think hard about what to do on a failed file read.
 
 # Task 15
-Currently, the game loop (in Main.run) is running as fast as it can. This just burns CPU cycles and heats up your computer needlessly. Your task is to "fix" the frame-rate so we are not pointlessly burning CPU power. You can do this by asking the current thread to sleep for a period of time using Thread.sleep. We want the frame-rate to be about 50 frames per second, that means we need the loop to take 20ms to complete.
 
-Sleeping a thread throws an InterruptedException so you will need to catch that. In fact, we don't care about the thread being interrupted so the catch block should just report the fact it was interrupted, print out a representation (via toString) of the exception that was thrown, and continue on as normal.
+Currently, the game loop (in `Main.run`) is running as fast as it can.   This just burns CPU cycles and heats up your computer needlessly.  Your task is to "fix" the frame-rate so we are not pointlessly burning CPU power. You can do this by asking the current thread to sleep for a period of time using `Thread.sleep`. We want the frame-rate to be about 50 frames per second, that means we need the loop to take 20ms to complete.
+
+Sleeping a thread throws an `InterruptedException` so you will need to catch that. In fact, we don't care about the thread being interrupted so the catch block should just report the fact it was interrupted, print out a representation (via `toString`) of the exception that was thrown, and continue on as normal.
 
 🤔 Can you even cause the exception to be thrown?
 
 # Task 16
-Add the following method to the Grid class
 
+Add the following method to the `Grid` class
+
+~~~~~
     /**
      * Takes a cell consumer (i.e. a function that has a single `Cell` argument and
      * returns `void`) and applies that consumer to each cell in the grid.
@@ -185,8 +190,38 @@ Add the following method to the Grid class
     public void doToEachCell(Consumer<Cell> func){
       // Your job to add the body
     }
-Notice that the method accepts a Consumer functional interface.
+~~~~~
 
-Now use this method to turn the paint method of the Grid class into a single line of code. I.e. remove the double-nested loop and replace it with a call to doToEachCell.
+ Notice that the method accepts a `Consumer` functional interface.
 
-🤔 Can you find anywhere else this is useful? 🤔🤔 Can you make any other useful higher order methods?
+ Now use this method to turn the `paint` method of the `Grid` class into a single line of code.  I.e. remove the double-nested loop and replace it with a call to `doToEachCell`.
+
+🤔 Can you find anywhere else this is useful?  🤔🤔 Can you make any other useful _higher order_ methods?
+
+# Task 17
+
+The team has signed off on the game concept and it is time to start developing the gameplay.  The big-wigs at your company have decided the world needs a new turn-based strategy game in the spirit of famicom-wars, so we will build one of those.  The first step is to put in the turns!  We are going to need:
+  * Characters on different teams
+  * A way for the player to move their characters
+  * A way for the computer to move the other characters.
+
+To help us make these changes, [take a look at a UML diagram of the system as we have it now](https://www.lucidchart.com/documents/view/518e1baf-1582-474e-b963-4b8333850507/0_0) and compare it to [a UML diagram of where we need to be (with changes in red)](https://www.lucidchart.com/documents/view/1fb646b1-5bb5-43e9-8c84-8d0565aa08f9)
+
+We have made all the changes for you, but please go through each one to understand what we have done.  I.e. your job for this task is to understand the code we have added rather than adding any code of your own.  I strongly encourage you to explore this commit on bitbucket or in source tree where you can see exactly what lines were added/deleted/modified in making these changes.
+
+If you play the game now, you will see there are three stages:
+  * player chooses character
+  * player chooses new location
+  * computer moves its characters
+
+Notice that the computer move is random every time.  The AI (such as it is) asks for all cells that actor can move to, and picks one at random to move to.
+
+# Task 18
+
+We are going to build some (very rudimentary) strategy into this turn-based strategy game.  At the moment, all the actors on team blue will just move randomly.  Instead, we want their strategy to be determined by _which row they are on_.  If they are on an even-numbered then they should move randomly, but if they are on an odd-numbered row they should _always move to the left-most possible location_.  Note:  if it is not clear yet, you need the strategy pattern so implement this.  Why is is the right pattern for this task?
+
+🤔 Task 18a
+
+This task sits to the side of our other tasks. It is an experiment. Even after we get an answer, we won't build upon that answer in later tasks, i.e. we will use the Task 18 answer as the basis for Task 19. However, I think this is the most interesting task so far, it is certainly worth your time.
+
+Can we make the strategy pattern we just created disappear with lambda expressions? More concretely, can I get rid of the strategy interface and its subclasses and still have dynamic behaviour at run-time? If so, implement it and discuss the pros and cons of this approach compared to a "real" strategy pattern.

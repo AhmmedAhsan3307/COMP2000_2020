@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.ArrayList;
 
 /*public class Lion implements Actor {
     int x;
@@ -21,8 +22,17 @@ import java.awt.*;
 
 public class Lion extends Actor {
 
-    public Lion(Cell loc) {
+    public Lion(Cell loc, float redness) {
         this.loc = loc;
+        this.redness = redness;
+        this.colour = Color.RED;
+        this.turns = 1;
+        this.moves = 1;
+        setPoly();
+    }
+
+    public void setPoly() {
+        this.display = new ArrayList<Polygon>();
         Polygon mane = new Polygon();
         mane.addPoint(loc.x + 6, loc.y + 6);
         mane.addPoint(loc.x + 29, loc.y + 6);
@@ -33,10 +43,7 @@ public class Lion extends Actor {
         face.addPoint(loc.x + 24, loc.y + 11);
         face.addPoint(loc.x + 24, loc.y + 24);
         face.addPoint(loc.x + 11, loc.y + 24);
-
-        polygon.add(mane);
-        polygon.add(face);
-
+        this.display.add(mane);
+        this.display.add(face);
     }
-
 }
