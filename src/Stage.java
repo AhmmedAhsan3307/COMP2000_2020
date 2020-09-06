@@ -21,6 +21,7 @@ import java.util.*;
         }
     }
 }*/
+
 public class Stage {
     Grid grid;
     ArrayList<Actor> actors;
@@ -119,6 +120,9 @@ public class Stage {
                     for (Actor a : actors) {
                         if (a.isTeamRed() && a.turns > 0) {
                             redsWithMovesLeft++;
+                            if (a.loc.row % 2 == 1) {
+                                a.loc.col = 0;
+                            }
                         }
                     }
                     if (redsWithMovesLeft > 0) {
