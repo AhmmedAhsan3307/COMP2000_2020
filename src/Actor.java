@@ -29,7 +29,7 @@ public abstract class Actor {
 
     public void setLocation(Cell loc) {
         this.loc = loc;
-        if (this.loc.row % 2 == 0){
+        if (this.loc.row % 2 == 0) {
             this.strat = new RandomMove();
         } else {
             this.strat = new LeftMostMove();
