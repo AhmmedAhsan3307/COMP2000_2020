@@ -1,4 +1,5 @@
 public class AnimationBeat {
+    private static AnimationBeat Animationinst;
     private long started;
     private long a; // length of phase a
     private long b; // length of phase b
@@ -11,16 +12,23 @@ public class AnimationBeat {
         this.c = 500;
     }
 
+    public static AnimationBeat getAnim() {
+        if (Animationinst == null)
+            Animationinst = new AnimationBeat();
+
+        return Animationinst;
+    }
+
     // returns which phase the animation is currently in
     public char inPhase() {
         long currTime = System.currentTimeMillis();
-        long rem = (currTime - started) % (a + b);
+        long rem = (currTime - started) % (a + b + c);
         if (rem > a + b) {
             return 'c';
         } else if (rem > a) {
             return 'b';
         } else {
-            return 'c';
+            return 'a';
         }
     }
 
@@ -37,4 +45,5 @@ public class AnimationBeat {
         }
 
     }
+
 }
