@@ -14,9 +14,7 @@ import java.util.ArrayList;
         g.setColor(Color.RED);
         g.fillRect(x, y, Cell.size, Cell.size);
         g.setColor(Color.BLACK);
-        g.drawRect(x, y, Cell.size, Cell.size);
-        
-        
+        g.drawRect(x, y, Cell.size, Cell.size);   
     }
 }*/
 
