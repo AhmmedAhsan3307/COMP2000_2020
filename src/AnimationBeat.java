@@ -1,22 +1,23 @@
 public class AnimationBeat {
-    private static AnimationBeat Animationinst;
     private long started;
     private long a; // length of phase a
     private long b; // length of phase b
     private long c; // length of phase c
 
-    public AnimationBeat() {
+    private static AnimationBeat instance;
+
+    private AnimationBeat() {
         started = System.currentTimeMillis();
         this.a = 5000;
         this.b = 500;
         this.c = 500;
     }
 
-    public static AnimationBeat getAnim() {
-        if (Animationinst == null)
-            Animationinst = new AnimationBeat();
-
-        return Animationinst;
+    public static AnimationBeat getInstance() {
+        if (instance == null) {
+            instance = new AnimationBeat();
+        }
+        return instance;
     }
 
     // returns which phase the animation is currently in
