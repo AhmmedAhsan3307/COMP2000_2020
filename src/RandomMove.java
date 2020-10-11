@@ -9,7 +9,7 @@ public class RandomMove implements MoveStrategy {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "random movement strategy";
     }
 

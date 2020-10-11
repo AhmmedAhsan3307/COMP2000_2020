@@ -30,7 +30,7 @@ public class Rabbit extends Actor {
         this.colour = Color.WHITE;
         this.turns = 1;
         this.moves = 5;
-        this.animationBeat = AnimationBeat.getAnim();
+        this.animationBeat = AnimationBeat.getInstance();
     }
 
     public void setPoly() {
